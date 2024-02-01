@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -10,9 +11,16 @@ export class SigninComponent {
   email: string = ""
   password: string = ""
   auth = inject(Auth)
+  router = inject(Router)
 
-  signIn() {
-    alert("click")
-    signInWithEmailAndPassword(this.auth, this.email, this.password)
+  async signIn() {
+    await this.auth.signOut()
+    await signInWithEmailAndPassword(this.auth, this.email, this.password)
+
+    this.router.navigate(["auth"])
+  }
+
+  navigate() {
+    this.router.navigate(["auth/signup"])
   }
 }
