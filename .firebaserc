@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "andy-bin": {
+      "hosting": {
+        "andybin": [
+          "andy-bin"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "andy-bin"
+  }
+}

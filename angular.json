@@ -139,6 +139,23 @@
               "devServerTarget": "andybin:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "andybin:build:production",
+              "serveTarget": "andybin:serve:production"
+            },
+            "development": {
+              "buildTarget": "andybin:build:development",
+              "serveTarget": "andybin:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
