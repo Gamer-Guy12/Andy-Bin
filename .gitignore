@@ -6,6 +6,7 @@
 /out-tsc
 /bazel-out
 .nx/
+cypress/fixtures/auth.json
 
 # Node
 /node_modules
