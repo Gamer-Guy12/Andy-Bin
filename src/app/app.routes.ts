@@ -3,6 +3,7 @@ import { NotFoundComponent } from './util/not-found/not-found.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthHomeComponent } from './auth/auth-home/auth-home.component';
+import { ProfileComponent } from './auth/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,11 @@ export const routes: Routes = [
         path: "",
         component: AuthHomeComponent,
         title: "Andy Bin: Auth"
+      },
+      {
+        path: "profile",
+        component: ProfileComponent,
+        title: "Andy Bin: Profile"
       }
     ]
   },

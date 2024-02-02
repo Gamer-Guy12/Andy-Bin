@@ -22,4 +22,8 @@ export class AuthHomeComponent {
   async signOut() {
     await this.auth.signOut()
   }
+
+  updateProfile() {
+    this.router.navigate(["auth/profile"])
+  }
 }

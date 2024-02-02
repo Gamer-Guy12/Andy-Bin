@@ -4,6 +4,7 @@ import { SigninComponent } from './signin/signin.component';
 import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
 import { AuthHomeComponent } from './auth-home/auth-home.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -11,7 +12,8 @@ import { AuthHomeComponent } from './auth-home/auth-home.component';
   declarations: [
     SigninComponent,
     SignupComponent,
-    AuthHomeComponent
+    AuthHomeComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { AuthHomeComponent } from './auth-home/auth-home.component';
   exports: [
     SigninComponent,
     SignupComponent,
-    AuthHomeComponent
+    AuthHomeComponent,
+    ProfileComponent
   ]
 })
 export class AuthModule { }

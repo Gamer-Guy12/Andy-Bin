@@ -1,0 +1,19 @@
+<div class="w-[97vw] h-screen absolute bg-slate-600 top-0 right-0 grid place-items-center">
+  <div class="bg-slate-500 w-[40vw] h-[95vh] rounded-md flex flex-col items-center">
+    @if (auth.currentUser) {
+      <form class="bg-slate-500 w-[40vw] h-[95vh] rounded-md flex flex-col items-center" (ngSubmit)="update()">
+        <div class="text-white text-2xl mt-10">If you don't want to update something leave it blank.</div>
+        <input type="text" class="mt-10 border-4 border-white bg-slate-500 text-white rounded-md h-[5vh] w-[35vw]" name="username" placeholder="Enter New Username..." [(ngModel)]="username">
+        <input type="email" class="mt-10 border-4 border-white bg-slate-500 text-white rounded-md h-[5vh] w-[35vw]" name="email" placeholder="Enter New Email..." [(ngModel)]="email">
+        <input type="password" class="mt-10 border-4 border-white bg-slate-500 text-white rounded-md h-[5vh] w-[35vw]" name="password" placeholder="Enter New Password..." [(ngModel)]="password">
+        <input type="password" class="mt-10 border-4 border-white bg-slate-500 text-white rounded-md h-[5vh] w-[35vw]" name="confirmPassword" placeholder="Confirm New Password..." [(ngModel)]="confirmPassword">
+
+        <input class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[10vw] h-[5vh] text-center grid place-items-center font-bold text-xl" value="Update Profile" type="submit" />
+      </form>
+    }
+    @else {
+      <div class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[20vw] h-[5vh] text-center grid place-items-center font-bold text-xl" (click)="signIn()">Sign In</div>
+      <div class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[20vw] h-[5vh] text-center grid place-items-center font-bold text-xl" (click)="signUp()">Sign Up</div>
+    }
+  </div>
+</div>
