@@ -1,0 +1,11 @@
+<div class="w-[97vw] h-screen absolute bg-slate-600 top-0 right-0 grid place-items-center">
+  <div class="bg-slate-500 w-[40vw] h-[95vh] rounded-md flex flex-col items-center">
+    @if (auth.currentUser) {
+      <div class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[20vw] h-[5vh] text-center grid place-items-center font-bold text-xl" (click)="signOut()">Sign Out</div>
+    }
+    @else {
+      <div class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[20vw] h-[5vh] text-center grid place-items-center font-bold text-xl" (click)="signIn()">Sign In</div>
+      <div class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[20vw] h-[5vh] text-center grid place-items-center font-bold text-xl" (click)="signUp()">Sign Up</div>
+    }
+  </div>
+</div>

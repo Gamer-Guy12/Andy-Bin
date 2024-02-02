@@ -41,8 +41,12 @@ export class SignupComponent {
     if (!this.auth.currentUser)
       return
 
-    await updateProfile(this.auth.currentUser, { displayName: this.username })
+    await updateProfile(this.auth.currentUser, { displayName: this.username, photoURL: `avatars.dicebear.com/api/identicon/${this.auth.currentUser.uid}.svg` })
 
-    this.router.navigate([""])
+    this.router.navigate(["auth"])
+  }
+
+  signIn() {
+    this.router.navigate(["auth", "signin"])
   }
 }

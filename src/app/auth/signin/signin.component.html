@@ -1,10 +1,10 @@
 <div class="w-[97vw] h-screen absolute bg-slate-600 top-0 right-0 grid place-items-center">
-  <div class="bg-slate-500 w-[40vw] h-[95vh] rounded-md flex flex-col items-center">
-    <input type="email" class="mt-10 border-4 border-white bg-slate-500 text-white rounded-md h-[5vh] w-[35vw]" placeholder="Enter Email..." [(ngModel)]="email">
-    <input type="password" class="mt-10 border-4 border-white bg-slate-500 text-white rounded-md h-[5vh] w-[35vw]" placeholder="Enter Password..." [(ngModel)]="password">
+  <form class="bg-slate-500 w-[40vw] h-[95vh] rounded-md flex flex-col items-center" (ngSubmit)="signIn()">
+    <input type="email" class="mt-10 border-4 border-white bg-slate-500 text-white rounded-md h-[5vh] w-[35vw]" name="email" placeholder="Enter Email..." [(ngModel)]="email">
+    <input type="password" class="mt-10 border-4 border-white bg-slate-500 text-white rounded-md h-[5vh] w-[35vw]" name="password" placeholder="Enter Password..." [(ngModel)]="password">
 
-    <div class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[10vw] h-[5vh] text-xl text-center" (click)="signIn()">Sign In</div>
+    <input class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[10vw] h-[5vh] text-center grid place-items-center font-bold text-xl" value="Sign In" type="submit" />
 
-    <div class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[20vw] h-[5vh] text-xl text-center self-baseline mb-10" (click)="navigate()">Don't have an account? Sign Up.</div>
-  </div>
+    <div class="mt-10 text-white bg-slate-400 rounded-md cursor-pointer w-[20vw] h-[5vh] text-center grid place-items-center font-bold text-xl" (click)="navigate()">Don't have an account? Sign Up.</div>
+  </form>
 </div>
