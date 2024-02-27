@@ -1,4 +1,4 @@
 <div class="w-[97vw] h-screen absolute bg-slate-600 top-0 right-0">
-    
+    <app-server-listing [server]="server" *ngFor="let server of data | async" />
 </div>
   

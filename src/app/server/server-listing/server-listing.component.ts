@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+interface Item {
+  name: string,
+  public: boolean,
+  users: string[]
+}
 
 @Component({
   selector: 'app-server-listing',
@@ -6,5 +12,5 @@ import { Component } from '@angular/core';
   styleUrl: './server-listing.component.scss'
 })
 export class ServerListingComponent {
-
+  @Input({required: true}) server!: Item
 }

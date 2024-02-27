@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { Firestore, collection, collectionData, query, where } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, or, query, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 interface Item {
@@ -22,7 +22,7 @@ export class ServerHomeComponent {
 
   constructor() {
     if (!this.auth.currentUser) return
-    let que = query(this.col, where("people", "array-contains", this.auth.currentUser.uid))
+    let que = query(this.col, or(where("people", "array-contains", this.auth.currentUser.uid), where("people", "array-contains", this.auth.currentUser.uid)))
     this.data = collectionData(que) as Observable<Item[]>
   }
 }
