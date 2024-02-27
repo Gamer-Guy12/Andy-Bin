@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-server-home',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './server-home.component.scss'
 })
 export class ServerHomeComponent {
-
+  firestore = inject(Firestore)
 }
