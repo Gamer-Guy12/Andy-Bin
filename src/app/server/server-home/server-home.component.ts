@@ -1,5 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
+import { Auth } from '@angular/fire/auth';
+import { Firestore, collection, collectionData, query, where } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
+interface Item {
+  name: string,
+  public: boolean,
+  users: string[]
+}
 
 @Component({
   selector: 'app-server-home',
@@ -8,4 +16,13 @@ import { Firestore } from '@angular/fire/firestore';
 })
 export class ServerHomeComponent {
   firestore = inject(Firestore)
+  auth = inject(Auth)
+  col = collection(this.firestore, "Servers")
+  data!: Observable<Item[]>
+
+  constructor() {
+    if (!this.auth.currentUser) return
+    let que = query(this.col, where("people", "array-contains", this.auth.currentUser.uid))
+    this.data = collectionData(que) as Observable<Item[]>
+  }
 }
