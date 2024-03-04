@@ -1,4 +1,16 @@
-<div class="w-[97vw] h-screen absolute bg-slate-600 top-0 right-0">
-    <app-server-listing [server]="server" *ngFor="let server of data | async" />
+<div class="w-[97vw] h-[95vh] absolute bg-slate-600 top-0 right-0 overflow-x-auto scroll flex-col items-center">
+    @for (item of data | async; track $index) {
+        <app-server-listing [server]="item" />
+    }
 </div>
-  
+<div class="w-[97vw] bottom-0 right-0 absolute h-[5vh] bg-slate-700">
+    <form (submit)="createServer()" class="w-full h-full flex items-center justify-around" >
+        @if (public) {
+            <input type="button" (click)="swapPublic()" value="Make Server Private" class="w-[12vw] h-[4vh] rounded-md bg-slate-500 cursor-pointer text-white" />
+        } @else {
+            <input type="button" (click)="swapPublic()" value="Make Server Public" class="w-[12vw] h-[4vh] rounded-md bg-slate-500 cursor-pointer text-white" />
+        }
+        <input type="text" [(ngModel)]="title" placeholder="Server Name..." class="rounded-md text-center h-[4vh] w-[70vw] border-4 border-white bg-slate-700 text-white" />
+        <input type="submit" value="Make Server" class="w-[10vw] h-[4vh] bg-slate-500 cursor-pointer text-white rounded-md" />
+    </form>
+</div>

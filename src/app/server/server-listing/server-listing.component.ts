@@ -1,10 +1,6 @@
-import { Component, Input } from '@angular/core';
-
-interface Item {
-  name: string,
-  public: boolean,
-  users: string[]
-}
+import { Component, Input, inject } from '@angular/core';
+import { IServer } from '../iserver';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-server-listing',
@@ -12,5 +8,10 @@ interface Item {
   styleUrl: './server-listing.component.scss'
 })
 export class ServerListingComponent {
-  @Input({required: true}) server!: Item
+  @Input({required: true}) server!: IServer
+  router = inject(Router)
+
+  click() {
+    this.router.navigate(["server", this.server.id])
+  }
 }

@@ -5,6 +5,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthHomeComponent } from './auth/auth-home/auth-home.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { ServerHomeComponent } from './server/server-home/server-home.component';
+import { ServerComponent } from './server/server/server.component';
 
 export const routes: Routes = [
   {
@@ -34,7 +35,7 @@ export const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "auth/signin",
+    redirectTo: "server",
     pathMatch: "full"
   },
   {
@@ -42,8 +43,13 @@ export const routes: Routes = [
     children: [
       {
         path: "",
-        title: "Andy Bin: Servers",
-        component: ServerHomeComponent
+        component: ServerHomeComponent,
+        title: "Andy Bin: Servers"
+      },
+      {
+        path: "[id]",
+        component: ServerComponent,
+        title: "Andy Bin: Server"
       }
     ]
   },

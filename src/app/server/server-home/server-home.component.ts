@@ -1,13 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { Firestore, collection, collectionData, or, query, where } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, or, query, where } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-
-interface Item {
-  name: string,
-  public: boolean,
-  users: string[]
-}
+import { IServer } from '../iserver';
 
 @Component({
   selector: 'app-server-home',
@@ -17,12 +13,35 @@ interface Item {
 export class ServerHomeComponent {
   firestore = inject(Firestore)
   auth = inject(Auth)
-  col = collection(this.firestore, "Servers")
-  data!: Observable<Item[]>
+  router = inject(Router)
+  col = collection(this.firestore, "server")
+  data: Observable<IServer[]>
+ 
+  title = ""
+  public = false
 
   constructor() {
-    if (!this.auth.currentUser) return
-    let que = query(this.col, or(where("people", "array-contains", this.auth.currentUser.uid), where("people", "array-contains", this.auth.currentUser.uid)))
-    this.data = collectionData(que) as Observable<Item[]>
+    if (!this.auth.currentUser) {
+      this.router.navigate(["auth"])
+    }
+    if (!this.auth.currentUser) throw Error("Not signed in")
+    let que = query(this.col, or(where("public", "==", true), where("users", 'array-contains', this.auth.currentUser.uid))) 
+    this.data = collectionData(que, {idField: "id"}) as Observable<IServer[]>
   }
+
+  swapPublic() {
+    this.public = !this.public
+  }
+
+  async createServer() {
+    if (this.title === "") {
+      alert("server must have a name")
+      return
+    }
+    let doc = await addDoc(this.col, { name: this.title, public: this.public, users: [this.auth.currentUser?.uid] })
+    this.public = false
+    this.title = ""
+    this.router.navigate(["server", doc.id])
+  }
+
 }
